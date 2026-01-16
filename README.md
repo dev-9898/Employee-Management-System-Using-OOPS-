@@ -1,8 +1,3 @@
-Here is a **clean, simple GitHub README.md** you can directly use ✅
-(Human-written, beginner friendly)
-
----
-
 # Employee Management System (Python OOP)
 
 This is a simple **menu-driven Python project** built using **Object-Oriented Programming (OOP)** concepts.
