@@ -35,9 +35,6 @@ class Employee(Person):
         print("Employee ID:", self.__employee_id)
         print("Salary:", self.__salary)
 
-    def __del__(self):
-        print("Employee object destroyed")
-
 
 class Manager(Employee):
     def __init__(self, employee_id=None, name=None, age=None, salary=None, department=None):
@@ -59,38 +56,39 @@ class Developer(Employee):
         print("Programming Language:", self.programming_language)
 
 
-person = None
-employee = None
-manager = None
-developer = None
+persons = []
+employees = []
+managers = []
+developers = []
 
 print("--- Python OOP Project: Employee Management System ---")
 
 while True:
     print("\nChoose an operation:")
-    print("1. Create a Person")
-    print("2. Create an Employee")
-    print("3. Create a Manager")
-    print("4. Create a Developer")
+    print("1. Create Person")
+    print("2. Create Employee")
+    print("3. Create Manager")
+    print("4. Create Developer")
     print("5. Show Details")
     print("6. Exit")
 
     choice = int(input("Enter your choice: "))
 
     match choice:
+
         case 1:
             name = input("Enter Name: ")
             age = int(input("Enter Age: "))
-            person = Person(name, age)
-            print(f"Person created with name: {name} and age: {age}.")
+            persons.append(Person(name, age))
+            print("Person added successfully")
 
         case 2:
             name = input("Enter Name: ")
             age = int(input("Enter Age: "))
             emp_id = input("Enter Employee ID: ")
             salary = float(input("Enter Salary: "))
-            employee = Employee(emp_id, name, age, salary)
-            print("Employee created successfully")
+            employees.append(Employee(emp_id, name, age, salary))
+            print("Employee added successfully")
 
         case 3:
             name = input("Enter Name: ")
@@ -98,8 +96,8 @@ while True:
             emp_id = input("Enter Employee ID: ")
             salary = float(input("Enter Salary: "))
             dept = input("Enter Department: ")
-            manager = Manager(emp_id, name, age, salary, dept)
-            print("Manager created successfully")
+            managers.append(Manager(emp_id, name, age, salary, dept))
+            print("Manager added successfully")
 
         case 4:
             name = input("Enter Name: ")
@@ -107,50 +105,80 @@ while True:
             emp_id = input("Enter Employee ID: ")
             salary = float(input("Enter Salary: "))
             lang = input("Enter Programming Language: ")
-            developer = Developer(emp_id, name, age, salary, lang)
-            print("Developer created successfully")
+            developers.append(Developer(emp_id, name, age, salary, lang))
+            print("Developer added successfully")
 
         case 5:
-            found = False
+            print("\nShow Records:")
+            print("1. Persons")
+            print("2. Employees")
+            print("3. Managers")
+            print("4. Developers")
+            print("5. Show All")
+            print("6. Subclass Check")
 
-            if person:
-                print("\nPerson Details:")
-                person.display()
-                found = True
-            else:
-                print("\nPerson: No record found")
+            sub_choice = int(input("Enter your choice: "))
 
-            if employee:
-                print("\nEmployee Details:")
-                employee.display()
-                found = True
-            else:
-                print("\nEmployee: No record found")
+            match sub_choice:
 
-            if manager:
-                print("\nManager Details:")
-                manager.display()
-                found = True
-            else:
-                print("\nManager: No record found")
+                case 1:
+                    if persons:
+                        for p in persons:
+                            p.display()
+                            print("-" * 20)
+                    else:
+                        print("No Person records found")
 
-            if developer:
-                print("\nDeveloper Details:")
-                developer.display()
-                found = True
-            else:
-                print("\nDeveloper: No record found")
+                case 2:
+                    if employees:
+                        for e in employees:
+                            e.display()
+                            print("-" * 20)
+                    else:
+                        print("No Employee records found")
 
-            if not found:
-                print("\nNo records available.")
+                case 3:
+                    if managers:
+                        for m in managers:
+                            m.display()
+                            print("-" * 20)
+                    else:
+                        print("No Manager records found")
 
-            print("\nSubclass Checks:")
-            print("Is Manager subclass of Employee?", issubclass(Manager, Employee))
-            print("Is Developer subclass of Employee?", issubclass(Developer, Employee))
+                case 4:
+                    if developers:
+                        for d in developers:
+                            d.display()
+                            print("-" * 20)
+                    else:
+                        print("No Developer records found")
+
+                case 5:
+                    for p in persons:
+                        p.display()
+                        print("-" * 20)
+
+                    for e in employees:
+                        e.display()
+                        print("-" * 20)
+
+                    for m in managers:
+                        m.display()
+                        print("-" * 20)
+
+                    for d in developers:
+                        d.display()
+                        print("-" * 20)
+
+                case 6:
+                    print("Is Manager subclass of Employee?", issubclass(Manager, Employee))
+                    print("Is Developer subclass of Employee?", issubclass(Developer, Employee))
+
+                case _:
+                    print("Invalid option")
 
         case 6:
-            print("Exiting the system. All resources have been freed.")
-            print("Goodbye!")
+            print("Exiting the system. Goodbye!")
             break
 
         case _:
